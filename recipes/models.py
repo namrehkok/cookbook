@@ -30,9 +30,10 @@ class Ingredient(models.Model):
     price = models.DecimalField(default=1, max_digits=5, decimal_places=2)
 
     def __str__(self):              # __unicode__ on Python 2
-        return "%s (%s)" % (self.name, self.description_of_amount)
+        return "%s | %s (%s)" % (self.category, self.name, self.description_of_amount)
 
     class Meta:
+        ordering = ['category', 'name']
         verbose_name = 'Ingredient'
         verbose_name_plural = '1. Ingredienten'
 
@@ -79,6 +80,7 @@ class Recipe(models.Model):
     class Meta:
         verbose_name = 'Recept'
         verbose_name_plural = '2. Recepten'
+        ordering = ['name']
 
 
 
