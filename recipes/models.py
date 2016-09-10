@@ -22,7 +22,7 @@ class IngredientCategory(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=128, unique = True)
-    amount = models.DecimalField(default=1, max_digits=5, decimal_places=2)
+    amount = models.DecimalField(default=1, max_digits=6, decimal_places=2)
     store_choices = (('AH', 'Albert Heijn'), ('SL', 'Sligro'))
     store = models.CharField(max_length = 2, choices = store_choices, default = 'SL')
     category = models.ForeignKey(IngredientCategory, on_delete=models.CASCADE)
