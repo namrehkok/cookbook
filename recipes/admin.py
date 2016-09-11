@@ -38,7 +38,7 @@ def add_name_to_button(button_nm = 'Edit...'):
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'link_image', 'time', 'get_category', 'get_came_from', 'price',)
+    list_display = ('name', 'time', 'get_category', 'get_came_from', 'price',)
 
     edit_button = add_name_to_button('Edit')
     edit_button.allow_tags = True

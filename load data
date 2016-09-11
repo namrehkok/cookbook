@@ -1,0 +1,2 @@
+./manage.py dumpdata myapp > data.json
+./manage.py loaddata data.json

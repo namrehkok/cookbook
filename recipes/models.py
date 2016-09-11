@@ -27,7 +27,7 @@ class Ingredient(models.Model):
     store = models.CharField(max_length = 2, choices = store_choices, default = 'SL')
     category = models.ForeignKey(IngredientCategory, on_delete=models.CASCADE)
     description_of_amount = models.CharField(max_length=128, default = 'Per stuk')
-    price = models.DecimalField(default=1, max_digits=5, decimal_places=2)
+    price = models.DecimalField(default=1, max_digits=6, decimal_places=2)
 
     def __str__(self):              # __unicode__ on Python 2
         return "%s | %s (%s)" % (self.category, self.name, self.description_of_amount)
