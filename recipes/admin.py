@@ -41,17 +41,23 @@ def add_name_to_button(button_nm = 'Edit...'):
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'time', 'get_category', 'get_came_from', 'price',)
+    list_display = ('name', 'link_image', 'time', 'get_category', 'get_came_from', 'price',)
 
     edit_button = add_name_to_button('Edit')
     edit_button.allow_tags = True
     edit_button.short_description = 'edit'
 
     def link_image(self, obj):
-        if os.path.isfile(obj.image.path):
-            output = '<a href = "%s"><img src = "%s"</a>' % (obj.image_large.url, obj.image_thumbnail.url)
-        else:
-            output = 'Geen foto'
+        output = ''
+        try:
+            picture = obj.image.path
+            if os.path.isfile(picture):
+                output = '<a href = "%s"><img src = "%s"</a>' % (obj.image_large.url, obj.image_thumbnail.url)
+            else:
+                output = 'Fout: bestand niet beschikbaar'
+        except:
+            output = 'Nog geen foto'
+
         return output
 
 

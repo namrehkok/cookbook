@@ -67,8 +67,7 @@ class Recipe(models.Model):
 
     url = models.URLField(blank=True)
 
-    '''
-    # Removing the image part as this is causing heavy problems
+
     image = models.ImageField(upload_to = 'recipes', blank=True)
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFit(100, 50)],
@@ -79,7 +78,6 @@ class Recipe(models.Model):
                                       processors=[ResizeToFit(1280, 720)],
                                       format='JPEG',
                                       options={'quality': 90})
-    '''
 
     class Meta:
         verbose_name = 'Recept'
