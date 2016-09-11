@@ -4,6 +4,6 @@ myvenv
 db.sqlite3
 /static
 /media
-/cookbook/settings.py
 .DS_Store
 /cookbook/settings.py
+/recipes/migrations

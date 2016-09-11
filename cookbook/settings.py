@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'recipes',
     'imagekit',
-#    'django_object_actions',
 ]
 
 MIDDLEWARE_CLASSES = [
