@@ -64,9 +64,12 @@ class Recipe(models.Model):
     came_from = models.ForeignKey(RecipeCame_From, verbose_name="Came from", on_delete=models.CASCADE)
     ingredient = models.ManyToManyField(Ingredient, through='RecipeIngredient')
     time = models.IntegerField(default=15, validators=[validate_mod_five])
-    image = models.ImageField(upload_to = 'recipes', blank=True)
+
     url = models.URLField(blank=True)
 
+    '''
+    # Removing the image part as this is causing heavy problems
+    image = models.ImageField(upload_to = 'recipes', blank=True)
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFit(100, 50)],
                                       format='JPEG',
@@ -76,6 +79,7 @@ class Recipe(models.Model):
                                       processors=[ResizeToFit(1280, 720)],
                                       format='JPEG',
                                       options={'quality': 90})
+    '''
 
     class Meta:
         verbose_name = 'Recept'

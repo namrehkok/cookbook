@@ -9,6 +9,9 @@ from .models import Recipe, Ingredient, RecipeIngredient, Recipelist, RecipeReci
 
 from django.db.models import Sum
 
+import os.path
+
+
 #admin.site.register(Recipe)
 #admin.site.register(Ingredient)
 #admin.site.register(RecipeIngredient)
@@ -45,13 +48,12 @@ class RecipeAdmin(admin.ModelAdmin):
     edit_button.short_description = 'edit'
 
     def link_image(self, obj):
-        s=obj.image_thumbnail.url
-        output = ''
-        if s[-4:].upper == 'JPEG' or s[-3:].upper == 'JPG':
+        if os.path.isfile(obj.image.path):
             output = '<a href = "%s"><img src = "%s"</a>' % (obj.image_large.url, obj.image_thumbnail.url)
         else:
             output = 'Geen foto'
         return output
+
 
     link_image.allow_tags = True
     link_image.short_description = ''
