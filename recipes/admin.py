@@ -41,7 +41,7 @@ def add_name_to_button(button_nm = 'Edit...'):
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'link_image', 'time', 'get_category', 'get_came_from', 'price',)
+    list_display = ('name', 'get_recipe_rating', 'link_image', 'time', 'get_category', 'get_came_from', 'price',)
 
     edit_button = add_name_to_button('Edit')
     edit_button.allow_tags = True
@@ -59,6 +59,14 @@ class RecipeAdmin(admin.ModelAdmin):
             output = 'Nog geen foto'
 
         return output
+
+    def get_recipe_rating(self, obj):
+        '''
+        gets the rating based on previous usage
+        '''
+        #SL = ShoppinglistIngredient.objects.filter(shoppinglist__name = 'All ingredients (not aggregated)').values('ingredient').annotate(score = Sum('amount'))
+        rl = Recipelist.objects.filter(name = 'Recipe lists history', recipe = obj).count()
+        return rl
 
 
     link_image.allow_tags = True
