@@ -26,12 +26,13 @@ def shoppinglist(request):
     return HttpResponse(output)
 
 def tst(request):
-    rl = 'Recipe List'
-    output = ''
-    rlo = Recipelist.objects.get(name = rl)
-    s, created = Recipelist.objects.get_or_create(name = 'Recipe lists history')
-    for i in RecipeRecipelist.objects.filter(recipelist = rlo):
-        t = RecipeRecipelist.objects.create(recipe = i.recipe, recipelist = s)
+    recept = Recipe.objects.get(name = 'd')
+    ingredient = Ingredient.objects.get(name = '1')
+    t = RecipeIngredient.objects.filter(recipe = recept, ingredient = ingredient).values('ingredient').annotate(score = Sum('amount'))
+    output = str(t.get(ingredient = ingredient)['score'])
+    for i in t:
+        output += str(i)
+
     return HttpResponse(output)
 
 '''

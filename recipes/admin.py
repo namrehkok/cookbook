@@ -149,8 +149,8 @@ class RecipelistAdmin(admin.ModelAdmin):
         for lijst in queryset.all():
             for recept in lijst.recipe.all():
                 for ingredient in recept.ingredient.all():
-                    t = RecipeIngredient.objects.get(recipe = recept, ingredient = ingredient)
-                    si = ShoppinglistIngredient.objects.create(ingredient = ingredient, shoppinglist = s, amount = t.amount / ingredient.amount)
+                    t = RecipeIngredient.objects.filter(recipe = recept, ingredient = ingredient).values('ingredient').annotate(score = Sum('amount'))
+                    si = ShoppinglistIngredient.objects.create(ingredient = ingredient, shoppinglist = s, amount = t.get(ingredient = ingredient)['score'] / ingredient.amount)
 
         Shoppinglist.objects.filter(name = 'Shopping List').delete()
 

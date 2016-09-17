@@ -127,7 +127,7 @@ class Recipe(models.Model):
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    amount = models.DecimalField(default=1, max_digits=5, decimal_places=2)
+    amount = models.DecimalField(default=1, max_digits=10, decimal_places=2)
 
 class Recipelist(models.Model):
     name = models.CharField(max_length=128)
@@ -167,7 +167,7 @@ class Shoppinglist(models.Model):
 class ShoppinglistIngredient(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     shoppinglist = models.ForeignKey(Shoppinglist, on_delete=models.CASCADE)
-    amount = models.DecimalField(default=1, max_digits=5, decimal_places=2)
+    amount = models.DecimalField(default=1, max_digits=10, decimal_places=2)
     def __str__(self):
         return '%s - %s' % (self.ingredient.name, self.amount)
 
