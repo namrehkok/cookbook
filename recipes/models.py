@@ -20,6 +20,9 @@ class IngredientCategory(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 class Ingredient(models.Model):
     name = models.CharField(max_length=128, unique = True)
     amount = models.DecimalField(default=1, max_digits=6, decimal_places=2)
@@ -50,11 +53,17 @@ class RecipeCategory(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+
 class RecipeCame_From(models.Model):
     name = models.CharField(verbose_name="Origin", max_length=128)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['name']
 
 class Recipe(models.Model):
     name = models.CharField(max_length=128)
